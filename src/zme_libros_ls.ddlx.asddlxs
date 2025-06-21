@@ -1,0 +1,105 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+    typeName: 'Libro',
+    typeNamePlural: 'Libros',
+    typeImageUrl: '',
+    imageUrl: 'Imagen',
+    title: {
+        type: #STANDARD,
+        label: 'Título',
+//        iconUrl: '',
+//        criticality: '',
+        criticalityRepresentation: #WITHOUT_ICON
+//        value: '',
+//        valueQualifier: '',
+//        targetElement: '',
+//        url: ''
+    },
+    description: {
+        type: #STANDARD,
+        label: 'Autor',
+//        iconUrl: '',
+//        criticality: '',
+        criticalityRepresentation: #WITHOUT_ICON
+//        value: '',
+//        valueQualifier: '',
+//        targetElement: '',
+//        url: ''
+    }
+}
+@Search.searchable: true
+annotate entity ZC_LIBROS_LS with
+{
+
+  @UI.facet: [
+  //  Pestaña Detalles del Libro
+  {
+      id: 'DetallesLibro',
+      label: 'Detalles del Libro',
+      type: #COLLECTION,
+      position: 10
+  },
+  {
+      id: 'Libro',
+      parentId: 'DetallesLibro',
+      label: 'Detalles',
+      type: #FIELDGROUP_REFERENCE,
+      targetQualifier: 'DetallesLibro',
+      position: 10
+  },
+
+
+  // Pestaña Clientes
+  {
+      id: 'Clientes',
+      label: 'Clientes',
+      type: #LINEITEM_REFERENCE,
+      targetElement: '_Clientes',
+      position: 20
+  }
+  ]
+  @UI.fieldGroup: [{ qualifier: 'DetallesLibro', position: 10 }]
+  IdLibro;
+
+  @UI.lineItem: [{ position: 10, importance: #HIGH }]
+  @UI.selectionField: [{ position: 10 }]
+  Titulo;
+
+  @UI.lineItem: [{ position: 20, importance: #HIGH }]
+  @Search: {
+      defaultSearchElement: true,
+      ranking: #MEDIUM,
+      fuzzinessThreshold: 0.8
+  }
+  Editorial;
+
+  @UI.lineItem: [{ position: 30, importance: #HIGH }]
+  Autor;
+
+  @UI.fieldGroup: [{ qualifier: 'DetallesLibro', position: 20 }]
+  @Consumption.valueHelpDefinition: [{
+    entity: {
+        name: 'ZC_CATEGO_1119',
+        element: 'Categoria' }
+  }]
+  Categoria;
+
+  @UI.lineItem: [{ position: 40, importance: #HIGH }]
+  Formato;
+
+  @UI.lineItem: [{ position: 50, importance: #HIGH }]
+  Idioma;
+
+  @UI.lineItem: [{ position: 60, importance: #HIGH }]
+  Paginas;
+
+  @UI.lineItem: [{ position: 70, importance: #HIGH }]
+  Precio;
+
+  @UI.lineItem: [{ position: 80, importance: #HIGH, criticality: 'Ventas3', label: 'Ventas' }]
+  Ventas3;
+
+  @UI.fieldGroup: [{ qualifier: 'DetallesLibro', position: 30 }]
+  Descripcion;
+
+}

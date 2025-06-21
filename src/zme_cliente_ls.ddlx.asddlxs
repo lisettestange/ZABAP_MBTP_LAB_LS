@@ -1,0 +1,49 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+    typeName: 'Cliente',
+    typeNamePlural: 'Libros',
+    typeImageUrl: '',
+    imageUrl: 'Imagen',
+    title: {
+        type: #STANDARD,
+        label: 'Nombre',
+        iconUrl: '',
+        criticality: '',
+        criticalityRepresentation: #WITHOUT_ICON,
+        value: '',
+        valueQualifier: '',
+        targetElement: '',
+        url: ''
+    },
+    description: {
+        type: #STANDARD,
+        label: 'IdCliente',
+        iconUrl: '',
+        criticality: '',
+        criticalityRepresentation: #WITHOUT_ICON,
+        value: '',
+        valueQualifier: '',
+        targetElement: '',
+        url: ''
+    }
+}
+annotate entity ZC_CLIENTE_LS with
+{
+
+  @UI.lineItem: [{ position: 10, importance: #HIGH }]
+  IdCliente;
+
+  @UI.lineItem: [{ position: 20, importance: #HIGH }]
+  Acceso;
+
+  @UI.lineItem: [{ position: 30, importance: #HIGH }]
+  Nombre;
+
+  @UI.lineItem: [{ position: 40, importance: #HIGH }]
+  Apellidos;
+
+  @UI.lineItem: [{ position: 50, importance: #HIGH }]
+  Email;
+
+
+}
